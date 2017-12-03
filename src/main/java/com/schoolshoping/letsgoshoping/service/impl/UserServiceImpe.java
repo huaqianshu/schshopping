@@ -17,21 +17,28 @@ public class UserServiceImpe implements UserService {
 	@Override
 	public Result register(Document doc){
 		User user = new User();
-		user.setCardid(doc.getString("Cardid"));
+		user.setCardid(doc.getString("cardid"));
 		user.setCreatetime(new Date());
-		user.setEmail(doc.getString("Email"));
-		user.setIntroduction(doc.getString("Introduction"));
-		user.setMobile(doc.getString("Mobile"));
-		user.setNickname(doc.getString("Nickname"));
-		user.setSex(doc.getString("Sex"));
-		user.setSchool(doc.getInteger("School"));
-		userDao.save(user);
+		user.setEmail(doc.getString("email"));
+		user.setIntroduction(doc.getString("introduction"));
+		user.setMobile(doc.getString("mobile"));
+		user.setNickname(doc.getString("nickname"));
+		user.setSex(doc.getString("sex"));
+		user.setSchool(doc.getInteger("school"));
+		user.setPassword(doc.getString("password"));
+		user =userDao.save(user);
+		if(user == null){
+			return new Result(-1,"success");
+		}
 		return new Result(0,"success");
 	}
 	@Override
 	public Result login(Document doc) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userDao.findByMobileAndPassword(doc.getString("mobile"), doc.getString("password"));
+		if(user==null){
+			return new Result(-1,"手机号或密码错误");
+		}
+		return new Result(0,"success");
 	}
 
 	@Override

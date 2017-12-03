@@ -15,7 +15,7 @@ import java.util.Date;
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	
 	private int id;
 
 	private String cardid;
@@ -37,10 +37,14 @@ public class User implements Serializable {
 	private String sex;
 
 	private String wxopenid;
+	
+	private String password;
 
 	public User() {
 	}
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID")
 	public int getId() {
 		return this.id;
 	}
@@ -127,6 +131,14 @@ public class User implements Serializable {
 
 	public void setWxopenid(String wxopenid) {
 		this.wxopenid = wxopenid;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
