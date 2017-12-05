@@ -1,36 +1,42 @@
 package com.schoolshoping.letsgoshoping.entity;
 
 import java.io.Serializable;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 
+/**
+ * The persistent class for the school database table.
+ * 
+ */
 @Entity
-@NamedQuery(name="School.findAll", query="SELECT u FROM School u")
-public class School implements Serializable{
-	/**
-	 * 
-	 */
+@Table(name="school")
+@NamedQuery(name="School.findAll", query="SELECT s FROM School s")
+public class School implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID")
 	private int id;
+
 	private String name;
-	public String getName() {
-		return name;
+
+	public School() {
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public int getId() {
-		return id;
+		return this.id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }

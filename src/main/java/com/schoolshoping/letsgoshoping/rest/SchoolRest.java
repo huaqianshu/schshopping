@@ -18,7 +18,11 @@ public class SchoolRest {
 	@Qualifier("SchoolService")
 	private SchoolService schoolService;
 	@RequestMapping(value="getSchoolId")
-	public Result login(@RequestParam("name")String name){
+	public Result getSchoolId(@RequestParam("name")String name){
 		return schoolService.findbyName(name);
+	}
+	@RequestMapping(value="getAllSchool")
+	public Result findAll(){
+		return schoolService.findAll();
 	}
 }

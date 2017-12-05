@@ -11,11 +11,11 @@ import java.util.Date;
  * 
  */
 @Entity
+@Table(name="user")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	
+	@Id
 	private int id;
 
 	private String cardid;
@@ -32,23 +32,22 @@ public class User implements Serializable {
 
 	private String nickname;
 
+	private String password;
+
 	private int school;
 
 	private String sex;
 
 	private String wxopenid;
-	
-	private String password;
 
 	public User() {
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID")
+
 	public int getId() {
 		return this.id;
 	}
 
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -60,13 +59,13 @@ public class User implements Serializable {
 	public void setCardid(String cardid) {
 		this.cardid = cardid;
 	}
-
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getCreatetime() {
 		return this.createtime;
 	}
 
-	public void setCreatetime(Date date) {
-		this.createtime = date;
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
 	}
 
 	public String getEmail() {
@@ -109,6 +108,14 @@ public class User implements Serializable {
 		this.nickname = nickname;
 	}
 
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public int getSchool() {
 		return this.school;
 	}
@@ -131,14 +138,6 @@ public class User implements Serializable {
 
 	public void setWxopenid(String wxopenid) {
 		this.wxopenid = wxopenid;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 }
