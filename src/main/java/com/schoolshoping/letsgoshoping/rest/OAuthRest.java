@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.schoolshoping.letsgoshoping.base.Result;
 
 
+
 @RestController
 @RequestMapping("/schoolshoping")
 public class OAuthRest {
